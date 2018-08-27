@@ -1,0 +1,111 @@
+﻿body {
+  background: #421d08 !important;
+  color: #421d08 !important;
+  font-family: serif; }
+
+.mainContent {
+  padding: 10px;
+  background: #f9e28b;
+  min-height: 100vh; }
+  @media (min-width: 768px) {
+    .mainContent {
+      margin: 0px 100px; } }
+
+input[type=text] {
+  width: 100%; }
+
+.navigation-bar-container {
+  background: #421d08;
+  text-align: left;
+  margin-top: 20px; }
+  @media (min-width: 768px) {
+    .navigation-bar-container {
+      margin: 10px 100px 0px 100px; } }
+  @media (max-width: 768px) {
+    .navigation-bar-container {
+      text-align: center; } }
+  .navigation-bar-container .navigation-bar-item {
+    min-width: 75px;
+    vertical-align: bottom;
+    display: inline-block;
+    padding: 10px;
+    color: #fefaec !important;
+    text-decoration: none !important;
+    cursor: pointer; }
+    .navigation-bar-container .navigation-bar-item:hover, .navigation-bar-container .navigation-bar-item.active {
+      background: #f9e28b;
+      color: #421d08 !important; }
+    .navigation-bar-container .navigation-bar-item.main-page-heading {
+      font-size: 1.3em; }
+
+.footer {
+  color: #f9e28b; }
+
+.imageTopLevel {
+  margin: 10px;
+  margin: 20px;
+  display: inline-block;
+  padding: 25px 10px 50px 10px;
+  background-color: white;
+  min-width: 200px;
+  max-height: 300px;
+  vertical-align: top;
+  text-align: center; }
+  .imageTopLevel .back {
+    min-width: 150px;
+    max-width: 100%;
+    background-color: #222; }
+  .imageTopLevel img {
+    max-width: 100%;
+    max-height: 240px; }
+
+.imageGallery {
+  text-align: center;
+  background: #2b1305;
+  padding: 10px; }
+
+.dog-images {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap; }
+  .dog-images > div {
+    display: inline-block; }
+    .dog-images > div img {
+      height: 200px;
+      max-width: 100%; }
+
+.dog-info-one {
+  background: #fdf4d4; }
+  .dog-info-one .dog-parents {
+    width: 100%;
+    display: inline-block; }
+    .dog-info-one .dog-parents > div {
+      width: 50%;
+      display: inline-block; }
+
+.page-content {
+  margin-bottom: 10px; }
+
+.layout-table {
+  background: #fdf4d4;
+  margin-bottom: 20px; }
+  .layout-table > div {
+    padding: 20px; }
+  .layout-table .dog-name {
+    background: #665205;
+    color: #f9e28b;
+    font-size: 18px; }
+    .layout-table .dog-name a.command {
+      color: #f9e28b !important;
+      text-decoration: none !important;
+      float: right;
+      margin-left: 5px;
+      cursor: pointer; }
+  .layout-table .dog-nickname {
+    font-size: 16px; }
+  .layout-table .heading {
+    background: #f5d042;
+    font-weight: bold; }

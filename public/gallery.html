@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carobria German Shepherds</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styleSheet">
+
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="Styles/thumbs.css">
+    <link rel="stylesheet" href="Styles/bootstrap.min.css">
+    <script type="text/html" id="templatePrimary">
+        <div>
+            <div id="divHeader">
+            </div>
+            <div class="imageGallery">
+                <div class="imageTopLevel" v-for="image in images">
+                    <div class="back">
+                        <img :src="'Images/Gallery/' + image" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="divFooter">
+            </div>
+        </div>
+
+    </script>
+</head>
+
+<body>
+    <div id="divPrimary"></div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="vue.js"></script>
+    <script src="main.js"></script>
+    <script src="dog-component.js"></script>
+    <script src="common-layout.js"></script>
+    <script type="text/javascript">
+
+        new Vue({
+            el: "#divPrimary",
+            template: "#templatePrimary",
+            data: {
+                images: []
+            },
+            methods: {
+                setImages: function (images) {
+                    this.images = images;
+                }
+            },
+            created: function () {
+                $.get("galleryImages", this.setImages);
+            }
+        });
+
+        $(function () {
+            setTimeout(function () {
+                $(".tab-gallery").addClass("active");
+
+            }, 200);
+        });
+
+    </script>
+    <!--  -->
+</body>
+
+</html>

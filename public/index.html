@@ -1,0 +1,116 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Carobria German Shepherds</title>
+	<link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styleSheet">
+
+	<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" href="Styles/thumbs.css">
+	<link rel="stylesheet" href="Styles/bootstrap.min.css">
+	<script type="text/html" id="templatePrimary">
+		<div>
+            <div id="divHeader">
+            </div>
+			<div class="mainContent">
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12">
+                        <div class="home">
+                            <page-content-component unique-name="Home" :authenticated="authenticated"></page-content-component>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <auth-component @authed="authenticated = true"></auth-component>
+
+                        <div class="announcements">
+                            <div v-if="addingNew && authenticated">
+                                <strong>Title</strong>
+                                <input type="text" v-model="currentAnnouncement.Title" class="form-control" />
+                                <strong>Content</strong>
+
+                                <textarea v-model="currentAnnouncement.Content" rows="5" class="form-control"></textarea>
+                                <button class="button btn-success" @click="saveAnnouncement">Save</button>
+                            </div>
+                            <button @click="addingNew= true" class="button btn-primary" v-if="authenticated">Add New</button>
+                            <div class="layout-table" v-for="announcement in announcements">
+                                <div class="heading">
+                                    <span v-html="announcement.Title"></span>
+                                    <span v-html="new Date(announcement.createdAt).toLocaleDateString()"></span>
+                                    <i class="fa fa-remove" @click="deleteAnnouncement(announcement)"></i>
+                                </div>
+                                <div v-html="announcement.Content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+              
+			</div>
+            <div id="divFooter">
+            </div>
+		</div>
+
+	</script>
+</head>
+
+<body>
+	<div id="divPrimary"></div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="vue.js"></script>
+    <script src="main.js"></script>
+
+    <script src="common-layout.js"></script>
+    <script src="auth.js"></script>
+    <script src="dog-component.js"></script>
+	<script src="page-content-component.js"></script>
+	<script type="text/javascript">
+        
+        new Vue({
+            el: "#divPrimary",
+            template: "#templatePrimary",
+            data: {
+                announcements: [],
+                currentAnnouncement: { Title: '', Content: '' },
+                addingNew: false,
+                authenticated: false
+            },
+            methods: {
+                setAnnouncements: function (announcements) {
+                    this.announcements = announcements;
+                },
+                saveAnnouncement: function () {
+                    var announcements = this.announcements;
+                    $.post("announcements", this.currentAnnouncement, function (item) {
+                        announcements.push(item);
+                    });
+                },
+                deleteAnnouncement: function (announcement) {
+                    var announcements = this.announcements;
+                    $.delete("announcements/" + announcement._id, function (item) {
+                    });
+                }
+            },
+            created: function () {
+                $.get("announcements", this.setAnnouncements);
+            }
+        });
+
+
+        $(function () {
+            setTimeout(function () {
+                $(".tab-home").addClass("active");
+
+            }, 200);
+        });
+	</script>
+	<!-- <script src="main.js"></script> -->
+</body>
+
+</html>

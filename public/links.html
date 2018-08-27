@@ -1,0 +1,112 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Carobria German Shepherds</title>
+	<link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styleSheet">
+
+	<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" href="Styles/thumbs.css">
+	<link rel="stylesheet" href="Styles/bootstrap.min.css">
+	<script type="text/html" id="templatePrimary">
+		<div>
+			<div>
+                <div id="divHeader">
+                </div>
+                <div class="mainContent">
+                    <auth-component @authed="authenticated = true"></auth-component>
+
+                    <page-content-component unique-name="Links" :authenticated="authenticated"></page-content-component>
+                    <div v-if="addingLink && authenticated">
+                        <strong>Title</strong>
+                        <input type="text" v-model="currentLink.Title" class="form-control" />
+                        <strong>URL</strong>
+                        <input type="text" v-model="currentLink.URL" class="form-control" />
+                        <strong>Content</strong>
+                        <textarea v-model="currentLink.Content" rows="5" class="form-control"></textarea>
+                        <button @click="saveLink">Save</button>
+                    </div>
+                    <button @click="addingLink=true" v-if="authenticated">
+                        Add
+                    </button>
+                    <div class="layout-table" v-for="link in links">
+                        <div class="heading" v-html="link.Title"></div>
+
+                        <div>
+                            <div v-html="link.Content"></div>
+                            <a :href="link.URL" v-html="link.URL"></a>
+                        </div>
+                        <!--<a @click="deleteLink(link)">Remove</a>-->
+
+                    </div>
+
+                </div>
+                <div id="divFooter">
+                </div>
+			</div>
+		</div>
+
+	</script>
+</head>
+
+<body>
+	<div id="divPrimary"></div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="vue.js"></script>
+    <script src="main.js"></script>
+    <script src="auth.js"></script>
+
+    <script src="page-content-component.js"></script>
+    <script src="common-layout.js"></script>
+	<script type="text/javascript">
+        
+        new Vue({
+            el: "#divPrimary",
+            template: "#templatePrimary",
+            data: {
+                links: [],
+                currentLink: { Title: '', Content: '' },
+                addingLink: false,
+                authenticated: false
+            },
+            methods: {
+                setLinks: function (links) {
+                    this.links = links;
+                },
+                saveLink: function () {
+                    var links = this.links;
+                    $.post("links", this.currentLink, function (item) {
+                        links.push(item);
+                    });
+                },
+                deleteLink: function (link) {
+                    var links = this.links;
+                    $.delete("links/" + link._id, function (item) {
+                        links.push(item);
+                    });
+                }
+            },
+            created: function () {
+                $.get("links", this.setLinks);
+            }
+        });
+        $(function () {
+            setTimeout(function () {
+                $(".tab-links").addClass("active");
+
+            }, 200);
+        });
+
+        
+	</script>
+	<!-- <script src="main.js"></script> -->
+</body>
+
+</html>
