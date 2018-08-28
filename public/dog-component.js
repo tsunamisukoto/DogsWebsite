@@ -165,6 +165,9 @@ Vue.component('dog-component', {
         },
         setDeleted: function () {
             this.deleted = true;
+        },
+        forceUpdate: function () {
+            this.$forceUpdate();
         }
     },
     data: function () {
@@ -178,9 +181,11 @@ Vue.component('dog-component', {
         this.dog.Dame = this.dog.Dame||null;
         this.dog.Sire = this.dog.Sire||null;
         var dog = this.dog;
+        var forceUpdate = this.forceUpdate;
         $.get("/Images/" + dog.Nickname, function (retdata) {
-            dog.Images = retdata;
-        })
+            dog.Images = retdata || [];
+            forceUpdate();
+        });
     }
 }
 
