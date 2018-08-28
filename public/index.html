@@ -58,20 +58,20 @@
 </head>
 
 <body>
-	<div id="divPrimary"></div>
+    <div id="divPrimary"></div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
-    <script src="vue.js"></script>
-    <script src="main.js"></script>
+    <script src="/Scripts/Vue/vue.js"></script>
+    <script src="Scripts/Common/main.js"></script>
+    <script src="Scripts/Common/common-layout.js"></script>
+    <script src="Scripts/Vue/Components/page-content-component.js"></script>
+    <script src="Scripts/Vue/Components/dog-collection.js"></script>
+    <script src="Scripts/Vue/Components/dog-component.js"></script>
+    <script src="Scripts/Vue/Components/auth.js"></script>
+    <script type="text/javascript">
 
-    <script src="common-layout.js"></script>
-    <script src="auth.js"></script>
-    <script src="dog-component.js"></script>
-	<script src="page-content-component.js"></script>
-	<script type="text/javascript">
-        
         new Vue({
             el: "#divPrimary",
             template: "#templatePrimary",
@@ -109,8 +109,8 @@
 
             }, 200);
         });
-	</script>
-	<!-- <script src="main.js"></script> -->
+    </script>
+    <!-- <script src="main.js"></script> -->
 </body>
 
 </html>

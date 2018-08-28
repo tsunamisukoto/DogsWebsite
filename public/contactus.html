@@ -135,48 +135,45 @@
 </head>
 
 <body>
-	<div id="divPrimary"></div>
-
-
-	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="vue.js"></script>
-    <script src="page-content-component.js"></script>
-
-	<script src="common-layout.js"></script>
-    <script src="main.js"></script>
-    <script src="auth.js"></script>
-	<script type="text/javascript">
-            new Vue({
-                el: "#divPrimary",
-                template: "#templatePrimary",
-                data: {
-                    contactinfo: {},
-                    editing: false,
-                    authenticated: false
+    <div id="divPrimary"></div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/Vue/vue.js"></script>
+    <script src="Scripts/Common/main.js"></script>
+    <script src="Scripts/Common/common-layout.js"></script>
+    <script src="Scripts/Vue/Components/page-content-component.js"></script>
+    <script src="Scripts/Vue/Components/auth.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: "#divPrimary",
+            template: "#templatePrimary",
+            data: {
+                contactinfo: {},
+                editing: false,
+                authenticated: false
+            },
+            methods: {
+                setContactInfo: function (contactInfo) {
+                    this.contactinfo = contactInfo;
+                    this.editing = false;
                 },
-                methods: {
-                    setContactInfo: function (contactInfo) {
-                        this.contactinfo = contactInfo;
-                        this.editing = false;
-                    },
-                    save: function () {
-                        console.log(this.contactinfo);
-                        $.put("contact/" + this.contactinfo._id, this.contactinfo, this.setContactInfo);
+                save: function () {
+                    console.log(this.contactinfo);
+                    $.put("contact/" + this.contactinfo._id, this.contactinfo, this.setContactInfo);
 
-                    }
-                },
-                created: function () {
-                    $.get("contact", this.setContactInfo);
                 }
-            });
-            $(function () {
-                setTimeout(function () {
-                    $(".tab-contactus").addClass("active");
+            },
+            created: function () {
+                $.get("contact", this.setContactInfo);
+            }
+        });
+        $(function () {
+            setTimeout(function () {
+                $(".tab-contactus").addClass("active");
 
-                }, 200);
-            });
-	</script>
-	<!-- <script src="main.js"></script> -->
+            }, 200);
+        });
+    </script>
+    <!-- <script src="main.js"></script> -->
 </body>
 
 </html>

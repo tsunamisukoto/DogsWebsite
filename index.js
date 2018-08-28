@@ -21,7 +21,17 @@ var app = express();
 const bodyParser = require('body-parser');
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
+const rateLimit = require("express-rate-limit");
 
+app.enable("trust proxy"); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 1000 // limit each IP to 100 requests per windowMs
+});
+
+//  apply to all requests
+app.use(limiter);
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 app.get("/styleSheet", (req, res) => {

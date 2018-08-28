@@ -34,7 +34,10 @@
                         Add
                     </button>
                     <div class="layout-table" v-for="link in links">
-                        <div class="heading" v-html="link.Title"></div>
+                        <div class="heading">
+                            <span v-html="link.Title"></span>
+                            <a class="command" @click="deleteLink(link)">Delete</a>
+                        </div>
 
                         <div>
                             <div v-html="link.Content"></div>
@@ -89,7 +92,6 @@
                 deleteLink: function (link) {
                     var links = this.links;
                     $.delete("links/" + link._id, function (item) {
-                        links.push(item);
                     });
                 }
             },
