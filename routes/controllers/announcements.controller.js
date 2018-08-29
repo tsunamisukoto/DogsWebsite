@@ -24,7 +24,7 @@ exports.create = (req, res) => {
 
 // Find a single announcement with a announcementId
 exports.findOne = (req, res) => {
-    Announcement.find()
+    Announcement.find().sort({ createdAt: -1 }).limit(10)
   .then(announcement => {
       res.send(announcement);
   }).catch(err => {

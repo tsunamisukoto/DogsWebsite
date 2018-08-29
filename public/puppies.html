@@ -21,14 +21,8 @@
                     <auth-component @authed="authenticated = true"></auth-component>
 
                     <page-content-component unique-name="PuppiesBeforePics" :authenticated="authenticated"></page-content-component>
-
-                    <div class="dog-images">
-                        
-                        <div v-for="image in images">
-                            
-                            <img :src="'Images/Puppies/'+ image" />
-                        </div>
-                    </div>
+                    <dog-images :images="images">
+                    </dog-images>
                     <page-content-component unique-name="PuppiesAfterPics" :authenticated="authenticated"></page-content-component>
 
 				</div>
@@ -50,6 +44,7 @@
     <script src="Scripts/Common/common-layout.js"></script>
     <script src="Scripts/Vue/Components/page-content-component.js"></script>
     <script src="Scripts/Vue/Components/dog-collection.js"></script>
+    <script src="Scripts/Vue/Components/dog-images.js"></script>
     <script src="Scripts/Vue/Components/dog-component.js"></script>
     <script src="Scripts/Vue/Components/auth.js"></script>
     <script type="text/javascript">
