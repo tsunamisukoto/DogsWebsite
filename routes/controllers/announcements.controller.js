@@ -11,15 +11,15 @@
                 function (err) {
                     db.close();
                     if (err)
-                        res.status(500).send({
+        res.status(500).send({
                             message: err.message || "Some error occurred while creating the Link."
-                        });
+        });
                     else {
                         res.send(req.body);
 
-                    }
+      }
 
-                });
+      });
 
         },
 
@@ -32,7 +32,7 @@
                 if (err)
                     throw err;
                 res.send(rows);
-            });
+  });
         },
         // Delete a dog with the specified dogId in the request
         del: (req, res) => {
@@ -48,8 +48,8 @@
                     else
                         res.status(200).send({
                             message: "Deleted successfully"
-                        });
-                });
+            });
+            });
         }
-    }
-}
+        }
+        }

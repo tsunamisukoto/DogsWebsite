@@ -89,13 +89,25 @@ input[type=text] {
     padding: 10px;
 }
 
-    .dog-images {
-        text-align: center;
-        width: 100%;
-        display: inline-block;
-        max-width:100%;
-        overflow-x: auto;
-        white-space:nowrap;
+.dog-images {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: hidden;
+    white-space: nowrap;
+
+    > div {
+        position: relative;
+
+        .nav {
+            .nav-left {
+            }
+
+            .nav-right {
+            }
+        }
+
         > div {
             display: inline-block;
 
@@ -105,6 +117,8 @@ input[type=text] {
             }
         }
     }
+}
+
 .dog-info-one {
     background: lighten($primary-background-color, 15%);
 
@@ -112,15 +126,18 @@ input[type=text] {
     .dog-parents {
         width: 100%;
         display: inline-block;
-        >div{
+
+        > div {
             width: 50%;
             display: inline-block;
         }
     }
 }
-.page-content{
+
+.page-content {
     margin-bottom: 10px;
 }
+
 .layout-table {
     background: lighten($primary-background-color, 15%);
     margin-bottom: 20px;
@@ -140,10 +157,10 @@ input[type=text] {
         
         a.command {
             color: $primary-background-color !important;
-            text-decoration:none!important;
+            text-decoration: none !important;
             float: right;
             margin-left: 5px;
-            cursor:pointer;
+            cursor: pointer;
         }
 
     }

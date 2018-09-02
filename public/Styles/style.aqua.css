@@ -7,7 +7,6 @@ body {
   padding: 10px;
   background: #70e5dc;
   min-height: 100vh; }
-
 @media (min-width: 768px) {
   .mainContent {
     margin: 0px 100px; } }
@@ -19,15 +18,12 @@ input[type=text] {
   background: #00332f;
   text-align: left;
   margin-top: 20px; }
-
 @media (min-width: 768px) {
   .navigation-bar-container {
     margin: 10px 100px 0px 100px; } }
-
 @media (max-width: 768px) {
   .navigation-bar-container {
     text-align: center; } }
-
 .navigation-bar-container .navigation-bar-item {
   min-width: 75px;
   vertical-align: bottom;
@@ -36,11 +32,9 @@ input[type=text] {
   color: #c6f5f1 !important;
   text-decoration: none !important;
   cursor: pointer; }
-
 .navigation-bar-container .navigation-bar-item:hover, .navigation-bar-container .navigation-bar-item.active {
   background: #70e5dc;
   color: #00332f !important; }
-
 .navigation-bar-container .navigation-bar-item.main-page-heading {
   font-size: 1.3em; }
 
@@ -57,12 +51,10 @@ input[type=text] {
   max-height: 300px;
   vertical-align: top;
   text-align: center; }
-
 .imageTopLevel .back {
   min-width: 150px;
   max-width: 100%;
   background-color: #222; }
-
 .imageTopLevel img {
   max-width: 100%;
   max-height: 240px; }
@@ -77,23 +69,21 @@ input[type=text] {
   width: 100%;
   display: inline-block;
   max-width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   white-space: nowrap; }
-
 .dog-images > div {
+    position: relative; }
+    .dog-images > div > div {
   display: inline-block; }
-
-.dog-images > div img {
+      .dog-images > div > div img {
   height: 200px;
   max-width: 100%; }
 
 .dog-info-one {
   background: #b1f1ec; }
-
 .dog-info-one .dog-parents {
   width: 100%;
   display: inline-block; }
-
 .dog-info-one .dog-parents > div {
   width: 50%;
   display: inline-block; }
@@ -104,10 +94,8 @@ input[type=text] {
 .layout-table {
   background: #b1f1ec;
   margin-bottom: 20px; }
-
 .layout-table > div {
   padding: 20px; }
-
 .layout-table .dog-name {
   background: #093330;
   color: #70e5dc;
@@ -119,10 +107,8 @@ input[type=text] {
   float: right;
   margin-left: 5px;
   cursor: pointer; }
-
 .layout-table .dog-nickname {
   font-size: 16px; }
-
 .layout-table .heading {
   background: #2fd9cc;
   font-weight: bold; }

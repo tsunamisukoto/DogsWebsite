@@ -85,11 +85,15 @@
                 setAnnouncements: function (announcements) {
                     this.announcements = announcements;
                 },
+                addAnnouncement: function (item) {
+
+                    this.announcements.splice(0, 0, item);
+                    this.currentAnnouncement = { Title: '', Content: '' };
+                    this.addingNew = false;
+                },
                 saveAnnouncement: function () {
                     var announcements = this.announcements;
-                    $.post("announcements", this.currentAnnouncement, function (item) {
-                        announcements.push(item);
-                    });
+                    $.post("announcements", this.currentAnnouncement, this.addAnnouncement);
                 },
                 deleteAnnouncement: function (announcement) {
                     var announcements = this.announcements;

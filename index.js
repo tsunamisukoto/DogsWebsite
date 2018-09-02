@@ -3,19 +3,6 @@ var useGoogle = (process.argv[2] == "useGoogle");
 var express = require('express');
 const dbConfig = require('./config/database.config.js');
 const generalSettings = require('./config/general.config.js');
-const mongoose = require('mongoose');
-
-mongoose.Promise = global.Promise;
-
-// Connecting to the database
-mongoose.connect(dbConfig.url, {
-    useNewUrlParser: true
-}).then(() => {
-    console.log("Successfully connected to the database");
-}).catch(err => {
-    console.log('Could not connect to the database. Exiting now...');
-    process.exit();
-});
 var app = express();
 
 const bodyParser = require('body-parser');
