@@ -113,7 +113,7 @@ input[type=text] {
   color: #70e5dc;
   font-size: 18px; }
 
-.layout-table .dog-name a.command {
+.layout-table .dog-name a.command, .layout-table .heading a.command {
   color: #70e5dc !important;
   text-decoration: none !important;
   float: right;

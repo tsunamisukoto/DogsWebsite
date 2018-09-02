@@ -13,7 +13,9 @@ Vue.component('page-content-component', {
     <div>\
         <div v-if="content" class="page-content">\
             <div v-if="editMode">\
+                <strong>Heading</strong><br/>\
                 <input type="text" class="form-control" v-model="content.Title" />\
+                <strong>Content</strong><br/>\
                 <textarea class="form-control" v-model="content.Content" rows="8"></textarea>\
                 <button @click="updateContent" v-if="authenticated">\
                     Save\
@@ -21,13 +23,13 @@ Vue.component('page-content-component', {
             </div>\
             <div v-else>\
                 <h3 v-if="content.Title" v-html="content.Title"></h3>\
-                <span v-if="content.Content" v-html="content.Content.replace(\'\\n\',\'<br/>\')"></span>\
+                <span v-if="content.Content" v-html="content.Content.asHTML()"></span>\
                 <span v-if="authenticated">\
                     <h4 v-if="(!content.Title) && (!content.Content)">\
                         You can configure content that appears here.\
                     </h4>\
                     <a @click="editMode = true" v-if="authenticated">\
-                        Configure\
+                        Edit\
                     </a>\
                 </span>\
             </div>\
@@ -42,7 +44,7 @@ Vue.component('page-content-component', {
             this.editMode = false;
         },
         updateContent: function () {
-            $.put("pagecontent/" + this.content._id, this.content, this.setContent);
+            $.put("pagecontent/" + this.content.rowid, this.content, this.setContent);
         }
     },
     data: function () {

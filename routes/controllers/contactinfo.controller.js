@@ -1,77 +1,73 @@
-﻿const ContactInfo = require('../models/contactinfo.model.js');
-// Create and Save a new ContactInfo
-exports.mapContactInfo = (contactinfo)=>{
+﻿exports.controller = (database) => {
     return {
-        FirstName: contactinfo.FirstName,
-        Address: contactinfo.Address,
-        KennelName: contactinfo.KennelName,
-        LastName: contactinfo.LastName,
-        Email: contactinfo.Email,
-        Mobile: contactinfo.Mobile,
-        HomeNumber: contactinfo.HomeNumber,
-        DogsNSWMemberNumber: contactinfo.DogsNSWMemberNumber,
-        Website: contactinfo.Website,
-        Facebook: contactinfo.Facebook
-    };
+
+        // Find a single dog with a dogId
+        findOne: (req, res) => {
+            var db = database.getDB();
+
+            db.get("SELECT rowid, * FROM ContactInfo", [req.params.UniqueName], (err, row) => {
+                if (err) {
+
+                    db.close();
+                    res.status(500).send({
+                        message: err.message || "Some error occurred while creating the Dog."
+                    });
+                }
+
+                if (row) {
+                    res.send(row);
+                }
+                else {
+
+                    db.run("INSERT INTO ContactInfo(FirstName, LastName, Address, KennelName, Email, Mobile, HomeNumber, DogsNSWMemberNumber, Facebook) VALUES (?,?,?,?,?,?,?,?,?);",
+                ['', '','','','','','','',''],
+                function (err) {
+                    if (err) {
+                        db.close();
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating the Dog."
+                        });
+                    }
+
+                    else {
+                        var row = {FirstName: '', LastName:'', Address: '', KennelName: '', Email: '', Mobile: '', HomeNumber: '', DogsNSWMemberNumber: '', Faceboook: '',rowid: this.lastID };
+                        db.close();
+                        res.send(row);
+
+                    }
+
+                });
+
+                }
+            });
+        },
+
+        // Update a dog identified by the dogId in the request
+        update: (req, res) => {
+            // Find dog and update it with the request body
+            var db = database.getDB();
+            db.run("UPDATE ContactInfo SET FirstName= ?, LastName = ?, Address = ?, KennelName = ?, Email = ?, Mobile = ?, HomeNumber = ?, DogsNSWMemberNumber = ?, Facebook =? WHERE rowid = ?",
+                [
+                    req.body.FirstName,
+                    req.body.LastName,
+                    req.body.Address,
+                    req.body.KennelName,
+                    req.body.Email,
+                    req.body.Mobile,
+                    req.body.HomeNumber,
+                    req.body.DogsNSWMemberNumber,
+                    req.body.Facebook,
+                    req.params.contactinfoId
+                ],
+                function (err) {
+                    db.close();
+                    if (err)
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while removing the Dog."
+                        });
+                    else
+                        res.status(200).send(req.body);
+                });
+        }
+    }
 }
-
-exports.create = (req, res) => {
-    // Create a Dog
-    const contactinfo = new ContactInfo(exports.mapContactInfo({}));
-
-    // Save Dog in the database
-    contactinfo.save()
-    .then(data => {
-        res.send(data);
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while creating the Dog."
-        });
-    });
-};
-
-// Find a single contactinfo with a contactinfoId
-exports.findOne = (req, res) => {
-    ContactInfo.find()
-  .then(contactinfo => {
-
-      if (contactinfo.length == 0) {
-          console.log("Have to make one")
-          return exports.create(req, res, {});
-          
-      }
-      res.send(contactinfo[0]);
-  }).catch(err => {
-      if (err.kind === 'ObjectId') {
-          return res.status(404).send({
-              message: "ContactInfo not found with id " 
-          });
-      }
-      return res.status(500).send({
-          message: "Error retrieving contactinfo with id " 
-      });
-  });
-};
-
-// Update a contactinfo identified by the contactinfoId in the request
-exports.update = (req, res) => {
-    // Find contactinfo and update it with the request body
-    ContactInfo.findByIdAndUpdate(req.params.contactinfoId, exports.mapContactInfo(req.body), { new: true })
-    .then(contactinfo => {
-        if (!contactinfo) {
-            return res.status(404).send({
-                message: "ContactInfo not found with id " + req.params.contactinfoId
-            });
-        }
-        res.send(contactinfo);
-    }).catch(err => {
-        if (err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "ContactInfo not found with id " + req.params.contactinfoId
-            });
-        }
-        return res.status(500).send({
-            message: "Error updating contactinfo with id " + req.params.contactinfoId
-        });
-    });
-};

@@ -90,7 +90,7 @@ Vue.component('dog-component', {
 				</ul>\
             </div>\
             <div class="form-group">\
-                <button v-if="dog.Sire == null" @click="addSire ">Add Sire</button>\
+                <button v-if="dog.Sire == null" @click="addSire" class="button btn-primary">Add Sire</button>\
                 <div v-else>\
                     <strong>Sire</strong>\
                     <div class="form-group">\
@@ -108,7 +108,7 @@ Vue.component('dog-component', {
                 </div>\
             </div>\
             <div class="form-group">\
-                <button v-if="dog.Dame == null" @click="addDame">Add Dame</button>\
+                <button v-if="dog.Dame == null" @click="addDame" class="button btn-primary">Add Dame</button>\
                 <div v-else>\
                     <strong>Dame</strong>\
                     <div class="form-group">\
@@ -125,17 +125,17 @@ Vue.component('dog-component', {
                     </div>\
                 </div>\
             </div>\
-            <button class="button btn-primary" @click="saveDog">Save</button>\
+            <button class="button btn-success" @click="saveDog">Save</button>\
         </div>\
     </div>',
     methods:
     {
         deleteDog: function () {
-            $.delete("dogs/" + this.dog._id, this.setDeleted);
+            $.delete("dogs/" + this.dog.rowid, this.setDeleted);
 
         },
         saveDog: function () {
-            $.put("dogs/" + this.dog._id, this.dog, this.stopEditingDog);
+            $.put("dogs/" + this.dog.rowid, this.dog, this.stopEditingDog);
         },
         addAchievement: function (grouping) {
             grouping.Achievements.push({ Name: "" });

@@ -98,12 +98,12 @@ input[type=text] {
     background: #665205;
     color: #f9e28b;
     font-size: 18px; }
-    .layout-table .dog-name a.command {
-      color: #f9e28b !important;
-      text-decoration: none !important;
-      float: right;
-      margin-left: 5px;
-      cursor: pointer; }
+  .layout-table .dog-name a.command, .layout-table .heading a.command {
+    color: #f9e28b !important;
+    text-decoration: none !important;
+    float: right;
+    margin-left: 5px;
+    cursor: pointer; }
   .layout-table .dog-nickname {
     font-size: 16px; }
   .layout-table .heading {

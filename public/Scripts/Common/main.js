@@ -30,3 +30,8 @@ $.delete = function (url, data, callback, type) {
         contentType: type
     });
 };
+
+String.prototype.asHTML = function () {
+    return this.replace(/(\r\n|\n|\r)/gm, '<br/>');
+
+}

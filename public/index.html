@@ -27,7 +27,7 @@
                         <auth-component @authed="authenticated = true"></auth-component>
 
                         <div class="announcements">
-                            <div v-if="addingNew && authenticated">
+                            <div v-if="addingNew && authenticated" style="margin-bottom: 10px">
                                 <strong>Title</strong>
                                 <input type="text" v-model="currentAnnouncement.Title" class="form-control" />
                                 <strong>Content</strong>
@@ -35,14 +35,14 @@
                                 <textarea v-model="currentAnnouncement.Content" rows="5" class="form-control"></textarea>
                                 <button class="button btn-success" @click="saveAnnouncement">Save</button>
                             </div>
-                            <button @click="addingNew= true" class="button btn-primary" v-if="authenticated">Add New</button>
+                            <button @click="addingNew= true" class="button btn-primary" v-if="authenticated && !addingNew">Add Announcement</button>
                             <div class="layout-table" v-for="announcement in announcements">
                                 <div class="heading">
                                     <span v-html="announcement.Title"></span>
-                                    <span v-html="new Date(announcement.createdAt).toLocaleDateString()"></span>
+                                    <span v-html="new Date(announcement.date_created).toLocaleDateString()" style="float:right"></span>
                                     <i class="fa fa-remove" @click="deleteAnnouncement(announcement)"></i>
                                 </div>
-                                <div v-html="announcement.Content"></div>
+                                <div v-html="announcement.Content.asHTML()"></div>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                 },
                 deleteAnnouncement: function (announcement) {
                     var announcements = this.announcements;
-                    $.delete("announcements/" + announcement._id, function (item) {
+                    $.delete("announcements/" + announcement.rowid, function (item) {
                     });
                 }
             },

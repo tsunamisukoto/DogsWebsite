@@ -1,70 +1,67 @@
-﻿const PageContent = require('../models/pagecontent.model.js');
-// Create and Save a new PageContent
-exports.mapPageContent = (pagecontent)=>{
+﻿exports.controller = (database) => {
     return {
-        Title: pagecontent.Title,
-        Content: pagecontent.Content,
-        UniqueName: pagecontent.UniqueName
-    };
+
+        // Find a single dog with a dogId
+        findOne: (req, res) => {
+            var db = database.getDB();
+
+            db.get("SELECT rowid, Title, Content, UniqueName FROM PageContents WHERE UniqueName = ?", [req.params.UniqueName], (err, row) => {
+                if (err)
+                {
+
+                    db.close();
+                    res.status(500).send({
+                        message: err.message || "Some error occurred while creating the Dog."
+                    });
+                }
+                  
+                if (row) {
+                    res.send(row);
+                }
+                else {
+
+                    db.run("INSERT INTO PageContents(Title, Content, UniqueName) VALUES (?,?,?);",
+                ['', '', req.params.UniqueName],
+                function (err) {
+                    if (err) {
+                        db.close();
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating the Dog."
+                        });
+                    }
+
+                    else {
+                        var row = { Title: '', Content: '', UniqueName: req.params.UniqueName, rowid: this.lastID };
+                        db.close();
+                        res.send(row);
+
+                    }
+
+                });
+
+                }
+            });
+        },
+
+        // Update a dog identified by the dogId in the request
+        update: (req, res) => {
+            // Find dog and update it with the request body
+            var db = database.getDB();
+            db.run("UPDATE PageContents SET Title = ?, Content = ? WHERE rowid = ?",
+                [
+                    req.body.Title,
+                    req.body.Content,
+                    req.params.pagecontentId
+                ],
+                function (err) {
+                    db.close();
+                    if (err)
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while removing the Dog."
+                        });
+                    else
+                        res.status(200).send(req.body);
+                });
+        }
+    }
 }
-
-exports.create = (req, res, content) => {
-    // Create a Dog
-    const pagecontent = new PageContent(exports.mapPageContent(content));
-
-    // Save Dog in the database
-    pagecontent.save()
-    .then(data => {
-        res.send(data);
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while creating the Dog."
-        });
-    });
-};
-
-// Find a single pagecontent with a pagecontentId
-exports.findOne = (req, res) => {
-    PageContent.find({UniqueName: req.params.UniqueName})
-  .then(pagecontent => {
-
-      if (pagecontent.length == 0) {
-          console.log("Have to make one")
-          return exports.create(req, res, { UniqueName: req.params.UniqueName });
-          
-      }
-      res.send(pagecontent[0]);
-  }).catch(err => {
-      if (err.kind === 'ObjectId') {
-          return res.status(404).send({
-              message: "PageContent not found with id " 
-          });
-      }
-      return res.status(500).send({
-          message: "Error retrieving pagecontent with id " 
-      });
-  });
-};
-
-// Update a pagecontent identified by the pagecontentId in the request
-exports.update = (req, res) => {
-    // Find pagecontent and update it with the request body
-    PageContent.findByIdAndUpdate(req.params.pagecontentId, exports.mapPageContent(req.body), { new: true })
-    .then(pagecontent => {
-        if (!pagecontent) {
-            return res.status(404).send({
-                message: "PageContent not found with id " + req.params.pagecontentId
-            });
-        }
-        res.send(pagecontent);
-    }).catch(err => {
-        if (err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "PageContent not found with id " + req.params.pagecontentId
-            });
-        }
-        return res.status(500).send({
-            message: "Error updating pagecontent with id " + req.params.pagecontentId
-        });
-    });
-};

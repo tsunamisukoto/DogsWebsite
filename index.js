@@ -38,12 +38,15 @@ app.get("/styleSheet", (req, res) => {
     res.sendFile(__dirname + '/public/Styles/' + generalSettings.cssFile);
 
 });
+
+const database = require("./modules/Database");
+database.init();
 app.use(express.static('public'));
-require('./routes/dogs.routes.js')(app);
-require('./routes/contactinfo.routes.js')(app);
-require('./routes/announcements.routes.js')(app);
-require('./routes/links.routes.js')(app);
-require('./routes/pagecontent.routes.js')(app);
+require('./routes/dogs.routes.js')(app, database);
+require('./routes/contactinfo.routes.js')(app, database);
+require('./routes/announcements.routes.js')(app, database);
+require('./routes/links.routes.js')(app, database);
+require('./routes/pagecontent.routes.js')(app, database);
 require('./routes/auth.routes.js')(app);
 
 app.get("/galleryImages", (req, res) => {
@@ -91,7 +94,6 @@ var dogQueries= {
   }
 
 }
-var dbo = null;
 function sha256(data) {
   return crypto.createHash("sha256").update(data).digest("base64");
 }

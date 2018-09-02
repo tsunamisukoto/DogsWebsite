@@ -133,6 +133,11 @@ input[type=text] {
         background: darken($primary-background-color, 55%);
         color: $primary-background-color;
 
+
+        font-size: 18px;
+    }
+    .dog-name, .heading{
+        
         a.command {
             color: $primary-background-color !important;
             text-decoration:none!important;
@@ -141,7 +146,6 @@ input[type=text] {
             cursor:pointer;
         }
 
-        font-size: 18px;
     }
 
     .dog-nickname {

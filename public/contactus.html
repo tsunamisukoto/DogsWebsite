@@ -2,73 +2,74 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Carobria German Shepherds</title>
-	<link rel="shortcut icon" href="favicon.ico" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carobria German Shepherds</title>
+    <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="styleSheet">
 
-	<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
-	<link rel="stylesheet" href="Styles/thumbs.css">
-	<link rel="stylesheet" href="Styles/bootstrap.min.css">
-	<script type="text/html" id="templatePrimary">
-		<div>
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="Styles/thumbs.css">
+    <link rel="stylesheet" href="Styles/bootstrap.min.css">
+    <script type="text/html" id="templatePrimary">
+        <div>
             <div id="divHeader">
             </div>
-			<div class="mainContent">
+            <div class="mainContent">
 
                 <auth-component @authed="authenticated = true"></auth-component>
-                <page-content-component unique-name="ContactUs" :authenticated="authenticated"></page-content-component>
+                <page-content-component unique-name="ContactUs" authenticated="authenticated"></page-content-component>
                 <div class="layout-table">
                     <div class="heading">
                         Contact Information
+                        <a @click="editing= !editing" v-if="authenticated" class="command">Edit</a>
                     </div>
                     <div v-if="editing">
                         <div>
                             <strong class="contact-field-name">
                                 Kennel Name
                             </strong><br />
-                            <input class="form-control" type="text"v-model="contactinfo.KennelName" />
+                            <input class="form-control" type="text" v-model="contactinfo.KennelName" />
                         </div>
                         <div>
                             <strong class="contact-field-name">
                                 Email
                             </strong><br />
-                            <input class="form-control" type="text"v-model="contactinfo.Email" />
+                            <input class="form-control" type="text" v-model="contactinfo.Email" />
 
                         </div>
                         <div>
                             <strong class="contact-field-name">
                                 Mobile Number
                             </strong><br />
-                            <input class="form-control" type="text"v-model="contactinfo.Mobile" />
+                            <input class="form-control" type="text" v-model="contactinfo.Mobile" />
                         </div>
                         <div>
                             <strong class="contact-field-name">
                                 Dogs NSW MemberNumber
                             </strong><br />
-                            <input class="form-control" type="text"v-model="contactinfo.DogsNSWMemberNumber" />
+                            <input class="form-control" type="text" v-model="contactinfo.DogsNSWMemberNumber" />
                         </div>
                         <div>
                             <strong class="contact-field-name">
                                 Home Number
                             </strong><br />
-                            <input class="form-control" type="text"v-model="contactinfo.HomeNumber" />
-
-                        </div>
-                        <div>
-                            <strong class="contact-field-name">
-                                Website
-                            </strong><br />
-                            <input class="form-control" type="text"v-model="contactinfo.Website" />
+                            <input class="form-control" type="text" v-model="contactinfo.HomeNumber" />
 
                         </div>
                         <div>
                             <strong class="contact-field-name">
                                 Facebook
                             </strong><br />
-                            <input class="form-control" type="text"v-model="contactinfo.Facebook" />
+                            <input class="form-control" type="text" v-model="contactinfo.Facebook" />
+                        </div>
+
+                        <div>
+                            <strong class="contact-field-name">
+                                Address
+                            </strong><br />
+                            <textarea class="form-control" v-model="contactinfo.Address" rows="5"></textarea>
                         </div>
                         <button @click="save" class="button btn-primary">Save</button>
 
@@ -109,29 +110,29 @@
                             <div v-html="contactinfo.HomeNumber" class="contact-field-value">
                             </div>
                         </div>
-                        <div v-if="contactinfo.Website">
-                            <strong class="contact-field-name">
-                                Website
-                            </strong><br />
-                            <a href="contactinfo.Website" v-html="contactinfo.Website"></a>
-                        </div>
                         <div v-if="contactinfo.Facebook">
                             <strong class="contact-field-name">
                                 Facebook
                             </strong><br />
-                            <a :href="contactinfo.Facebook" v-html="contactinfo.Facebook"></a>
+                            <a href="contactinfo.Facebook" v-html="contactinfo.Facebook"></a>
                         </div>
-                        <button @click="editing= !editing" v-if="authenticated" class="button btn-primary">Edit</button>
+                        <div v-if="contactinfo.HomeNumber">
+                            <strong class="contact-field-name">
+                                Address
+                            </strong><br />
+                            <div v-html="contactinfo.Address.asHTML()" class="contact-field-value">
+                            </div>
+                        </div>
 
                     </div>
-                    
+
                 </div>
-			</div>
+            </div>
             <div id="divFooter">
             </div>
-		</div>
+        </div>
 
-	</script>
+    </script>
 </head>
 
 <body>
@@ -157,8 +158,7 @@
                     this.editing = false;
                 },
                 save: function () {
-                    console.log(this.contactinfo);
-                    $.put("contact/" + this.contactinfo._id, this.contactinfo, this.setContactInfo);
+                    $.put("contact/" + this.contactinfo.rowid, this.contactinfo, this.setContactInfo);
 
                 }
             },
