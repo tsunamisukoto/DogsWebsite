@@ -10,7 +10,7 @@ body {
 
 .mainContent {
     padding: 10px;
-    background: $primary-background-color;
+    background: lighten($primary-background-color, 5%);
     min-height: 100vh;
 
     @media (min-width: $breakpoint-tablet) {
@@ -29,14 +29,10 @@ input[type=text] {
     @media (min-width: $breakpoint-tablet) {
         margin: 10px 100px 0px 100px;
     }
-
-    @media (max-width: $breakpoint-tablet) {
-        text-align: center;
-    }
-
     margin-top: 20px;
 
     .navigation-bar-item {
+
         min-width: 75px;
         vertical-align: bottom;
         display: inline-block;
@@ -44,16 +40,34 @@ input[type=text] {
         color: lighten($primary-background-color,20%) !important;
         text-decoration: none !important;
         cursor: pointer;
-
         &:hover, &.active {
-            background: $primary-background-color;
+    background: lighten($primary-background-color, 5%);
             color: $primary-foreground-color !important;
         }
 
         &.main-page-heading {
             font-size: 1.3em;
         }
+        
+        .mobile-heading{
+            display: none!important;
+        }
+
     }
+        
+        @media (max-width: $breakpoint-tablet) {
+            .navigation-bar-item {
+                display: none;
+                border: 2px darken($primary-background-color, 5%) solid;
+                &.main-page-heading {
+                    display: inline-block;
+                    width: 100%;
+                }
+                .shown{
+                    display:inline-block;
+                }
+            }
+        }
 }
 
 .footer {
@@ -62,7 +76,6 @@ input[type=text] {
 
 .imageTopLevel {
     margin: 10px;
-    margin: 20px;
     display: inline-block;
     padding: 25px 10px 50px 10px;
     background-color: white;
@@ -70,7 +83,12 @@ input[type=text] {
     max-height: 300px;
     vertical-align: top;
     text-align: center;
-
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    &:hover{
+        
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
     .back {
         min-width: 150px;
         max-width: 100%;
@@ -85,7 +103,7 @@ input[type=text] {
 
 .imageGallery {
     text-align: center;
-    background: darken($primary-foreground-color, 5%);
+    background: lighten($primary-background-color, 5%);
     padding: 10px;
 }
 
@@ -96,24 +114,47 @@ input[type=text] {
     max-width: 100%;
     overflow-x: hidden;
     white-space: nowrap;
-
-    > div {
+    >div {
         position: relative;
 
-        .nav {
-            .nav-left {
-            }
 
-            .nav-right {
-            }
-        }
-
-        > div {
+        >div {
             display: inline-block;
-
+            &.scrollable-parent{
+                width:100%;
+                position:relative;
+                overflow:hidden;
+            }
             img {
                 height: 200px;
                 max-width: 100%;
+                min-width: 200px;
+                margin:10px;
+
+            }
+            
+            &.nav {
+                position:absolute;
+                top: 80px;
+                padding: 20px;
+                z-index:1;
+                background: $primary-foreground-color;
+                color: $primary-background-color;
+                font-size: 20px;
+                cursor:pointer;
+                &:hover, &.active {
+                    background: $primary-background-color;
+                    border: 1px solid $primary-foreground-color;
+                    color: $primary-foreground-color !important;
+                    font-size: 20px;
+                }
+                &.nav-left {
+                    left: 0px;
+                }
+
+                &.nav-right {
+                    right: 0px;
+                }
             }
         }
     }
@@ -141,7 +182,13 @@ input[type=text] {
 .layout-table {
     background: lighten($primary-background-color, 15%);
     margin-bottom: 20px;
-
+    
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    &:hover{
+        
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
     > div {
         padding: 20px;
     }

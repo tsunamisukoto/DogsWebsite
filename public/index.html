@@ -21,6 +21,15 @@
                     <div class="col-lg-8 col-sm-12">
                         <div class="home">
                             <page-content-component unique-name="Home" :authenticated="authenticated"></page-content-component>
+                            <dog-images :images="images" directory="Homepage">
+                            </dog-images>
+
+                            <form action="/UploadImage/Homepage" enctype="multipart/form-data" method="post" v-if="authenticated">
+
+                                <input type="file" name="Image">
+                                <input type="submit" value="Upload">
+                            </form>
+                            <page-content-component unique-name="Home2" :authenticated="authenticated"></page-content-component>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-12">
@@ -67,6 +76,7 @@
     <script src="Scripts/Common/main.js"></script>
     <script src="Scripts/Common/common-layout.js"></script>
     <script src="Scripts/Vue/Components/page-content-component.js"></script>
+    <script src="Scripts/Vue/Components/dog-images.js"></script>
     <script src="Scripts/Vue/Components/dog-collection.js"></script>
     <script src="Scripts/Vue/Components/dog-component.js"></script>
     <script src="Scripts/Vue/Components/auth.js"></script>
@@ -79,7 +89,8 @@
                 announcements: [],
                 currentAnnouncement: { Title: '', Content: '' },
                 addingNew: false,
-                authenticated: false
+                authenticated: false,
+                images: []
             },
             methods: {
                 setAnnouncements: function (announcements) {
@@ -95,6 +106,9 @@
                     var announcements = this.announcements;
                     $.post("announcements", this.currentAnnouncement, this.addAnnouncement);
                 },
+                setImages: function (images) {
+                    this.images = images;
+                },
                 deleteAnnouncement: function (announcement) {
                     var announcements = this.announcements;
                     $.delete("announcements/" + announcement.rowid, function (item) {
@@ -103,6 +117,8 @@
             },
             created: function () {
                 $.get("announcements", this.setAnnouncements);
+                $.get("ImageCollection/Homepage", this.setImages);
+
             }
         });
 

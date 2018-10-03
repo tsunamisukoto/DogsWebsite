@@ -11,7 +11,7 @@ Vue.component('dog-collection', {
     },
     template: '\
     <div>\
-        <button @click="addDog" class="button btn-primary">Add {{category}}</button>\
+        <button v-if="authenticated" @click="addDog" class="button btn-primary">Add {{category}}</button>\
         <div v-for="(dog, dogIndex) in dogs" >\
             <dog-component :dog="dog" :dogIndex="dogIndex" :authenticated="authenticated">\
             </dog-component>\

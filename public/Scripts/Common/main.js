@@ -35,3 +35,7 @@ String.prototype.asHTML = function () {
     return this.replace(/(\r\n|\n|\r)/gm, '<br/>');
 
 }
+function scrollDiv(container, amount) {
+    var leftPos = $(container).scrollLeft();
+    $(container).animate({ scrollLeft: (leftPos + amount) + "px" }, 250);
+}

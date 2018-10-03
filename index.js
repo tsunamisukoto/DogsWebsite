@@ -44,17 +44,17 @@ app.get("/galleryImages", (req, res) => {
         res.send(files);
     })
 });
-app.get("/puppyImages", (req, res) => {
-    const testFolder = 'public/Images/Puppies/';
+app.get("/ImageCollection/:folder", (req, res) => {
+    const testFolder = 'public/Images/' + req.params.folder + '/';
     const fs = require('fs');
 
     fs.readdir(testFolder, (err, files) => {
         res.send(files);
     })
 });
-app.get("/Images/:nickname", (req, res) => {
+app.get("/Images/DogImages/:rowid", (req, res) => {
 
-    const testFolder = 'public/Images/' + req.params.nickname;
+    const testFolder = 'public/Images/DogImages/' + req.params.rowid;
     const fs = require('fs');
 
     fs.readdir(testFolder, (err, files) => {

@@ -37,6 +37,12 @@ input[type=text] {
       color: #470056 !important; }
     .navigation-bar-container .navigation-bar-item.main-page-heading {
       font-size: 1.3em; }
+  @media (max-width: 768px) {
+    .navigation-bar-container .navigation-bar-item {
+      display: none; }
+    .navigation-bar-container :first-child {
+      display: inline-block;
+      width: 100%; } }
 
 .footer {
   color: #f4c1ff; }
@@ -69,13 +75,15 @@ input[type=text] {
   width: 100%;
   display: inline-block;
   max-width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   white-space: nowrap; }
   .dog-images > div {
-    display: inline-block; }
-    .dog-images > div img {
-      height: 200px;
-      max-width: 100%; }
+    position: relative; }
+    .dog-images > div > div {
+      display: inline-block; }
+      .dog-images > div > div img {
+        height: 200px;
+        max-width: 100%; }
 
 .dog-info-one {
   background: white; }

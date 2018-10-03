@@ -16,12 +16,13 @@
             <div id="divHeader">
             </div>
             <div class="mainContent">
-                <auth-component @authed="authenticated = true"></auth-component>
-
                 <page-content-component unique-name="Bitches" :authenticated="authenticated"></page-content-component>
                 <dog-collection category="Bitch" :authenticated="authenticated">
                 </dog-collection>
+                <auth-component @authed="authenticated = true"></auth-component>
+
             </div>
+
             <div id="divFooter">
             </div>
         </div>
@@ -40,6 +41,7 @@
     <script src="Scripts/Vue/Components/page-content-component.js"></script>
     <script src="Scripts/Vue/Components/auth.js"></script>
     <script src="Scripts/Vue/Components/dog-collection.js"></script>
+    <script src="Scripts/Vue/Components/dog-images.js"></script>
     <script src="Scripts/Vue/Components/dog-component.js"></script>
     <script type="text/javascript">
 

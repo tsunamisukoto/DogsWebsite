@@ -8,4 +8,13 @@
     app.get("/dogs/:dogId", dogs.findOne);
     app.put("/dogs/:dogId", authenticated.authenticationRequired(dogs.update));
     app.delete("/dogs/:dogId", authenticated.authenticationRequired(dogs.del));
+
+    var multer = require('multer');
+    app.post('/UploadImage/:path', authenticated.authenticationRequired(function (req, res, next) {
+        var uploader = multer({ dest: 'public/Images/' + req.params.path + '/' }).single('Image');
+        uploader(req, res, function (err) {
+            res.redirect(req.get('referer'));
+        });
+    }));
+
 }

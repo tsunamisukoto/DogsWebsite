@@ -44,6 +44,13 @@ input[type=text] {
 .navigation-bar-container .navigation-bar-item.main-page-heading {
   font-size: 1.3em; }
 
+@media (max-width: 768px) {
+  .navigation-bar-container .navigation-bar-item {
+    display: none; }
+  .navigation-bar-container :first-child {
+    display: inline-block;
+    width: 100%; } }
+
 .footer {
   color: #b2c8ff; }
 
@@ -77,13 +84,16 @@ input[type=text] {
   width: 100%;
   display: inline-block;
   max-width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   white-space: nowrap; }
 
 .dog-images > div {
+  position: relative; }
+
+.dog-images > div > div {
   display: inline-block; }
 
-.dog-images > div img {
+.dog-images > div > div img {
   height: 200px;
   max-width: 100%; }
 

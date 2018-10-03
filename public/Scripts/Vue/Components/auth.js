@@ -1,13 +1,13 @@
 Vue.component('auth-component', {
     template: '\
     <div>\
-        <div v-if="!authenticated">\
-            <button class="btn-primary" @click="loggingIn = true" v-if="!loggingIn">Login</button>\
+        <div v-if="!authenticated && show">\
+            <a @click="loggingIn = true" v-if="!loggingIn">Login</a>\
             <div v-else>\
                 <strong>Usermname</strong><br/>\
                 <input type="text" v-model="currentUsername"/>\
                 <strong>Password</strong><br/>\
-                <input type="password" v-model="currentPassword"/>\
+                <input type="password" v-model="currentPassword" style="width:100%"/>\
                 <button class="btn-primary" @click="logIn">Login</button>\
             </div>\
         </div>\
@@ -21,6 +21,11 @@ Vue.component('auth-component', {
             this.authenticated = ((auth === true) || (auth == "true"));
             if (this.authenticated)
                 this.$emit("authed");
+        }
+    },
+    props: {
+        show: {
+            type: Boolean
         }
     },
     data: function () {

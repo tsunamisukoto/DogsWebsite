@@ -3,16 +3,22 @@ Vue.component('dog-images', {
         images: {
             type: Array,
             required: true
+        },
+        directory: {
+            type: String,
+            required: true
         }
     },
     template: '\
-         <div class="dog-images">\
-            <div>\
-                <div class="nav nav-left"></div>\
-                <div v-for="image in images">\
-                    <img :src="\'Images/Puppies/\'+ image" />\
+        <div>\
+            <div class="dog-images" v-if="images.length != 0">\
+                <div>\
+                    <div class="nav nav-left" onclick="scrollDiv($(this).parent().find(\'.scrollable-parent\')[0],-300)"><i class="fa fa-angle-left"></i></div>\
+                    <div class="scrollable-parent">\
+                        <img v-for="image in images" :src="\'Images/\'+ directory +\'/\'+ image" />\
+                    </div>\
+                    <div class="nav nav-right" onclick="scrollDiv($(this).parent().find(\'.scrollable-parent\')[0], 300)"><i class="fa fa-angle-right"></i></div>\
                 </div>\
-                <div class="nav nav-right"></div>\
             </div>\
         </div>'
 }

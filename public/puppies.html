@@ -21,8 +21,14 @@
                     <auth-component @authed="authenticated = true"></auth-component>
 
                     <page-content-component unique-name="PuppiesBeforePics" :authenticated="authenticated"></page-content-component>
-                    <dog-images :images="images">
+                    <dog-images :images="images" directory="Puppies">
                     </dog-images>
+
+                    <form action="/UploadImage/Puppies/" enctype="multipart/form-data" method="post" v-if="authenticated">
+                        
+                        <input type="file" name="Image">
+                        <input type="submit" value="Upload">
+                    </form>
                     <page-content-component unique-name="PuppiesAfterPics" :authenticated="authenticated"></page-content-component>
 
 				</div>
@@ -62,7 +68,7 @@
                 }
             },
             created: function () {
-                $.get("puppyImages", this.setImages);
+                $.get("ImageCollection/Puppies/", this.setImages);
             }
         });
 

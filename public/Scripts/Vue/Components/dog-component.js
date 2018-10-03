@@ -33,11 +33,12 @@ Vue.component('dog-component', {
 		    </div>\
 			<div>\
                 <div class="dog-info-one">\
-				    <div class="dog-images">\
-					    <div v-for="image in dog.Images">\
-						    <img :src="\'Images/\'+dog.Nickname + \'/\'+ image"/>\
-					    </div>\
-				    </div>\
+                    <dog-images :images="dog.Images" :directory="\'/DogImages/\' + dog.rowid.toString()">\
+                    </dog-images>\
+                    <form :action="\'/UploadImage/DogImages/\' + dog.rowid" enctype="multipart/form-data" method="post" v-if="authenticated">\
+                      <input type="file" name="Image">\
+                      <input type="submit" value="Upload">\
+                    </form>\
                     <div class="dog-parents">\
                         <div class="dog-sire" v-if="dog.Sire">\
                         </div>\
@@ -182,7 +183,7 @@ Vue.component('dog-component', {
         this.dog.Sire = this.dog.Sire||null;
         var dog = this.dog;
         var forceUpdate = this.forceUpdate;
-        $.get("/Images/" + dog.Nickname, function (retdata) {
+        $.get("/Images/DogImages/" + dog.rowid, function (retdata) {
             dog.Images = retdata || [];
             forceUpdate();
         });
