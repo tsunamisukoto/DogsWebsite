@@ -37,6 +37,12 @@ input[type=text] {
     .main-page-heading {
         font-size: 1.3em;
     }
+    .collapsed {
+        display: none;
+    }
+    .expanded{
+        display:none;
+    }
 
     .navigation-bar-item, .main-page-heading {
         min-width: 75px;
@@ -61,9 +67,16 @@ input[type=text] {
     @media (max-width: $breakpoint-tablet) {
 
         .navigation-items {
-            .main-page-heading{
-                width: 100%
+            .collapsed {
+                display: inline-block;
             }
+            .expanded{
+                display:none;
+            }
+            .main-page-heading {
+                width: 100%;
+            }
+
             .navigation-bar-item {
                 display: none;
                 width: 100%;
@@ -71,6 +84,13 @@ input[type=text] {
             }
 
             &.shown {
+                .collapsed {
+                    display: none;
+                }
+                .expanded{
+                    display:inline-block;
+                }
+
                 .navigation-bar-item {
                     display: inline-block;
                 }
