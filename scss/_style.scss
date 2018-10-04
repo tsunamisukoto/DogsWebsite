@@ -56,9 +56,10 @@ input[type=text] {
 
     }
         
-        /*@media (max-width: $breakpoint-tablet) {
+        @media (max-width: $breakpoint-tablet) {
             .navigation-bar-item {
-                display: none;
+                /*display: none;*/
+                width: 100%;
                 border: 2px darken($primary-background-color, 5%) solid;
                 &.main-page-heading {
                     display: inline-block;
@@ -68,7 +69,7 @@ input[type=text] {
                     display:inline-block;
                 }
             }
-        }*/
+        }
 }
 
 .footer {
