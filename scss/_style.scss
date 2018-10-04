@@ -1,6 +1,7 @@
 
 $breakpoint-tablet: 768px;
 
+@import "_common.mixins";
 body {
     background: $primary-foreground-color !important;
     color: $primary-foreground-color !important;
@@ -129,7 +130,7 @@ input[type=text] {
                 height: 200px;
                 max-width: 100%;
                 min-width: 200px;
-                margin:10px;
+                margin-right: 10px;
 
             }
             

@@ -16,5 +16,11 @@
             res.redirect(req.get('referer'));
         });
     }));
+    app.post('/UploadImage/DogImages/:rowid', authenticated.authenticationRequired(function (req, res, next) {
+        var uploader = multer({ dest: 'public/Images/DogImages/' + req.params.rowid + '/' }).single('Image');
+        uploader(req, res, function (err) {
+            res.redirect(req.get('referer'));
+        });
+    }));
 
 }

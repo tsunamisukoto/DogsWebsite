@@ -94,7 +94,7 @@ input[type=text] {
         height: 200px;
         max-width: 100%;
         min-width: 200px;
-        margin: 10px; }
+        margin-right: 10px; }
       .dog-images > div > div.nav {
         position: absolute;
         top: 80px;
