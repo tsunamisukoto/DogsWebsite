@@ -21,7 +21,9 @@ input[type=text] {
   @media (min-width: 768px) {
     .navigation-bar-container {
       margin: 10px 100px 0px 100px; } }
-  .navigation-bar-container .navigation-bar-item {
+  .navigation-bar-container .main-page-heading {
+    font-size: 1.3em; }
+  .navigation-bar-container .navigation-bar-item, .navigation-bar-container .main-page-heading {
     min-width: 75px;
     vertical-align: bottom;
     display: inline-block;
@@ -29,23 +31,20 @@ input[type=text] {
     color: white !important;
     text-decoration: none !important;
     cursor: pointer; }
-    .navigation-bar-container .navigation-bar-item:hover, .navigation-bar-container .navigation-bar-item.active {
+    .navigation-bar-container .navigation-bar-item:hover, .navigation-bar-container .navigation-bar-item.active, .navigation-bar-container .main-page-heading:hover, .navigation-bar-container .main-page-heading.active {
       background: #f9dbff;
       color: #470056 !important; }
-    .navigation-bar-container .navigation-bar-item.main-page-heading {
-      font-size: 1.3em; }
-    .navigation-bar-container .navigation-bar-item .mobile-heading {
+    .navigation-bar-container .navigation-bar-item .mobile-heading, .navigation-bar-container .main-page-heading .mobile-heading {
       display: none !important; }
   @media (max-width: 768px) {
-    .navigation-bar-container .navigation-bar-item {
-      /*display: none;*/
+    .navigation-bar-container .navigation-items .main-page-heading {
+      width: 100%; }
+    .navigation-bar-container .navigation-items .navigation-bar-item {
+      display: none;
       width: 100%;
-      border: 2px #efa8ff solid; }
-      .navigation-bar-container .navigation-bar-item.main-page-heading {
-        display: inline-block;
-        width: 100%; }
-      .navigation-bar-container .navigation-bar-item .shown {
-        display: inline-block; } }
+      border: 1px #efa8ff solid; }
+    .navigation-bar-container .navigation-items.shown .navigation-bar-item {
+      display: inline-block; } }
 
 .footer {
   color: #f4c1ff; }

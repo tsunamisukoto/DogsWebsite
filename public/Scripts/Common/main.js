@@ -39,7 +39,3 @@ function scrollDiv(container, amount) {
     var leftPos = $(container).scrollLeft();
     $(container).animate({ scrollLeft: (leftPos + amount) + "px" }, 250);
 }
-$(function () {
-
-    $('.navigation-bar-item[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active');
-});

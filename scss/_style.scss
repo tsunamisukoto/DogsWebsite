@@ -2,6 +2,7 @@
 $breakpoint-tablet: 768px;
 
 @import "_common.mixins";
+
 body {
     background: $primary-foreground-color !important;
     color: $primary-foreground-color !important;
@@ -30,10 +31,14 @@ input[type=text] {
     @media (min-width: $breakpoint-tablet) {
         margin: 10px 100px 0px 100px;
     }
+
     margin-top: 20px;
 
-    .navigation-bar-item {
+    .main-page-heading {
+        font-size: 1.3em;
+    }
 
+    .navigation-bar-item, .main-page-heading {
         min-width: 75px;
         vertical-align: bottom;
         display: inline-block;
@@ -41,35 +46,37 @@ input[type=text] {
         color: lighten($primary-background-color,20%) !important;
         text-decoration: none !important;
         cursor: pointer;
+
         &:hover, &.active {
-    background: lighten($primary-background-color, 5%);
+            background: lighten($primary-background-color, 5%);
             color: $primary-foreground-color !important;
         }
 
-        &.main-page-heading {
-            font-size: 1.3em;
-        }
-        
-        .mobile-heading{
-            display: none!important;
-        }
 
+        .mobile-heading {
+            display: none !important;
+        }
     }
-        
-        @media (max-width: $breakpoint-tablet) {
+
+    @media (max-width: $breakpoint-tablet) {
+
+        .navigation-items {
+            .main-page-heading{
+                width: 100%
+            }
             .navigation-bar-item {
-                /*display: none;*/
+                display: none;
                 width: 100%;
-                border: 2px darken($primary-background-color, 5%) solid;
-                &.main-page-heading {
+                border: 1px darken($primary-background-color, 5%) solid;
+            }
+
+            &.shown {
+                .navigation-bar-item {
                     display: inline-block;
-                    width: 100%;
-                }
-                .shown{
-                    display:inline-block;
                 }
             }
         }
+    }
 }
 
 .footer {
@@ -87,10 +94,11 @@ input[type=text] {
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    &:hover{
-        
+
+    &:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
+
     .back {
         min-width: 150px;
         max-width: 100%;
@@ -116,40 +124,44 @@ input[type=text] {
     max-width: 100%;
     overflow-x: hidden;
     white-space: nowrap;
-    >div {
+
+    > div {
         position: relative;
 
 
-        >div {
+        > div {
             display: inline-block;
-            &.scrollable-parent{
-                width:100%;
-                position:relative;
-                overflow:hidden;
+
+            &.scrollable-parent {
+                width: 100%;
+                position: relative;
+                overflow: hidden;
             }
+
             img {
                 height: 200px;
                 max-width: 100%;
                 min-width: 200px;
                 margin-right: 10px;
-
             }
-            
+
             &.nav {
-                position:absolute;
+                position: absolute;
                 top: 80px;
                 padding: 20px;
-                z-index:1;
+                z-index: 1;
                 background: $primary-foreground-color;
                 color: $primary-background-color;
                 font-size: 20px;
-                cursor:pointer;
+                cursor: pointer;
+
                 &:hover, &.active {
                     background: $primary-background-color;
                     border: 1px solid $primary-foreground-color;
                     color: $primary-foreground-color !important;
                     font-size: 20px;
                 }
+
                 &.nav-left {
                     left: 0px;
                 }
@@ -184,13 +196,13 @@ input[type=text] {
 .layout-table {
     background: lighten($primary-background-color, 15%);
     margin-bottom: 20px;
-    
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    &:hover{
-        
+
+    &:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
+
     > div {
         padding: 20px;
     }
@@ -198,12 +210,11 @@ input[type=text] {
     .dog-name {
         background: darken($primary-background-color, 55%);
         color: $primary-background-color;
-
-
         font-size: 18px;
     }
-    .dog-name, .heading{
-        
+
+    .dog-name, .heading {
+
         a.command {
             color: $primary-background-color !important;
             text-decoration: none !important;
@@ -211,7 +222,6 @@ input[type=text] {
             margin-left: 5px;
             cursor: pointer;
         }
-
     }
 
     .dog-nickname {
