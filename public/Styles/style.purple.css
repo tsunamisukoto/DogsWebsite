@@ -17,7 +17,20 @@ input[type=text] {
 .navigation-bar-container {
   background: #470056;
   text-align: left;
-  margin-top: 20px; }
+  margin-top: 20px;
+  /*@media (max-width: $breakpoint-tablet) {
+            .navigation-bar-item {
+                display: none;
+                border: 2px darken($primary-background-color, 5%) solid;
+                &.main-page-heading {
+                    display: inline-block;
+                    width: 100%;
+                }
+                .shown{
+                    display:inline-block;
+                }
+            }
+        }*/ }
   @media (min-width: 768px) {
     .navigation-bar-container {
       margin: 10px 100px 0px 100px; } }
@@ -36,15 +49,6 @@ input[type=text] {
       font-size: 1.3em; }
     .navigation-bar-container .navigation-bar-item .mobile-heading {
       display: none !important; }
-  @media (max-width: 768px) {
-    .navigation-bar-container .navigation-bar-item {
-      display: none;
-      border: 2px #efa8ff solid; }
-      .navigation-bar-container .navigation-bar-item.main-page-heading {
-        display: inline-block;
-        width: 100%; }
-      .navigation-bar-container .navigation-bar-item .shown {
-        display: inline-block; } }
 
 .footer {
   color: #f4c1ff; }
