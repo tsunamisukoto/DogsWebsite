@@ -1,8 +1,6 @@
 
 $breakpoint-tablet: 768px;
 
-@import "_common.mixins";
-
 body {
     background: $primary-foreground-color !important;
     color: $primary-foreground-color !important;
@@ -37,14 +35,16 @@ input[type=text] {
     .main-page-heading {
         font-size: 1.3em;
     }
+
     .collapsed {
         display: none;
     }
-    .expanded{
-        display:none;
+
+    .expanded {
+        display: none;
     }
 
-    .navigation-bar-item, .main-page-heading {
+    .navigation-bar-item {
         min-width: 75px;
         vertical-align: bottom;
         display: inline-block;
@@ -56,6 +56,31 @@ input[type=text] {
         &:hover, &.active {
             background: lighten($primary-background-color, 5%);
             color: $primary-foreground-color !important;
+            display: inline-block !important;
+        }
+
+        .expander {
+            display: none !important;
+        }
+
+        &.active {
+            .expander {
+
+                @media (max-width: $breakpoint-tablet) {
+                    display: inline-block !important;
+                    float: right;
+                    width: 20px;
+                    height: 20px;
+                    text-align: center;
+                    font-size: 20px;
+                }
+
+                &:hover, &.active {
+                    background: lighten($primary-foreground-color, 5%);
+                    color: $primary-background-color !important;
+                    display: inline-block !important;
+                }
+            }
         }
 
 
@@ -70,9 +95,11 @@ input[type=text] {
             .collapsed {
                 display: inline-block;
             }
-            .expanded{
-                display:none;
+
+            .expanded {
+                display: none;
             }
+
             .main-page-heading {
                 width: 100%;
             }
@@ -87,8 +114,9 @@ input[type=text] {
                 .collapsed {
                     display: none;
                 }
-                .expanded{
-                    display:inline-block;
+
+                .expanded {
+                    display: inline-block;
                 }
 
                 .navigation-bar-item {
@@ -99,54 +127,57 @@ input[type=text] {
     }
 }
 
-.footer {
-    color: $primary-background-color;
-}
-
-.imageTopLevel {
-    margin: 10px;
-    display: inline-block;
-    padding: 25px 10px 50px 10px;
-    background-color: white;
-    min-width: 200px;
-    max-height: 300px;
-    vertical-align: top;
-    text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-
-    &:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    .footer {
+        color: $primary-background-color;
     }
 
-    .back {
-        min-width: 150px;
-        max-width: 100%;
-        background-color: #222;
+    .imageTopLevel {
+        margin: 10px;
+        display: inline-block;
+        padding: 25px 10px 50px 10px;
+        background-color: white;
+        min-width: 200px;
+        max-height: 300px;
+        vertical-align: top;
+        text-align: center;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+
+        &:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .back {
+            min-width: 150px;
+            max-width: 100%;
+            background-color: #222;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 240px;
+        }
     }
 
-    img {
-        max-width: 100%;
-        max-height: 240px;
+    .imageGallery {
+        text-align: center;
+        background: lighten($primary-background-color, 5%);
+        padding: 10px;
     }
-}
-
-.imageGallery {
-    text-align: center;
-    background: lighten($primary-background-color, 5%);
-    padding: 10px;
-}
 
 .dog-images {
     text-align: center;
     width: 100%;
     display: inline-block;
     max-width: 100%;
-    overflow-x: hidden;
     white-space: nowrap;
+    position: relative;
+    padding: 0 10px;
+    background: $primary-foreground-color;
+    box-shadow: 0px 4px 0px 0px rgba($primary-foreground-color,0.3);
 
     > div {
-        position: relative;
+        overflow: hidden;
 
 
         > div {
@@ -164,92 +195,94 @@ input[type=text] {
                 min-width: 200px;
                 margin-right: 10px;
             }
+        }
 
-            &.nav {
-                position: absolute;
-                top: 80px;
-                padding: 20px;
-                z-index: 1;
-                background: $primary-foreground-color;
-                color: $primary-background-color;
+
+        &.nav {
+            position: absolute;
+            top: 65px;
+            padding: 20px;
+            z-index: 1;
+            background: $primary-foreground-color;
+            color: $primary-background-color;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.8;
+
+            &:hover, &.active {
+                background: $primary-background-color;
+                border: 1px solid $primary-foreground-color;
+                color: $primary-foreground-color !important;
                 font-size: 20px;
-                cursor: pointer;
+            }
 
-                &:hover, &.active {
-                    background: $primary-background-color;
-                    border: 1px solid $primary-foreground-color;
-                    color: $primary-foreground-color !important;
-                    font-size: 20px;
-                }
+            &.nav-left {
+                left: -10px;
+            }
 
-                &.nav-left {
-                    left: 0px;
-                }
-
-                &.nav-right {
-                    right: 0px;
-                }
+            &.nav-right {
+                right: -10px;
             }
         }
     }
 }
 
-.dog-info-one {
-    background: lighten($primary-background-color, 15%);
+    .dog-info-one {
+        background: lighten($primary-background-color, 15%);
 
 
-    .dog-parents {
-        width: 100%;
-        display: inline-block;
+        .dog-parents {
+            width: 100%;
+            display: inline-block;
+
+            > div {
+                width: 50%;
+                display: inline-block;
+            }
+        }
+    }
+
+    .page-content {
+        margin-bottom: 10px;
+    }
+
+    .layout-table {
+        background: lighten($primary-background-color, 15%);
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+
+        &:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
 
         > div {
-            width: 50%;
-            display: inline-block;
+            padding: 20px;
+        }
+
+        .dog-name {
+            background: darken($primary-background-color, 55%);
+            color: $primary-background-color;
+            font-size: 18px;
+        }
+
+        .dog-name, .heading {
+
+            a.command {
+                color: $primary-background-color !important;
+                text-decoration: none !important;
+                float: right;
+                margin-left: 5px;
+                cursor: pointer;
+            }
+        }
+
+        .dog-nickname {
+            font-size: 16px;
+        }
+
+        .heading {
+            background: darken($primary-background-color, 15%);
+            font-weight: bold;
         }
     }
-}
-
-.page-content {
-    margin-bottom: 10px;
-}
-
-.layout-table {
-    background: lighten($primary-background-color, 15%);
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-
-    &:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    }
-
-    > div {
-        padding: 20px;
-    }
-
-    .dog-name {
-        background: darken($primary-background-color, 55%);
-        color: $primary-background-color;
-        font-size: 18px;
-    }
-
-    .dog-name, .heading {
-
-        a.command {
-            color: $primary-background-color !important;
-            text-decoration: none !important;
-            float: right;
-            margin-left: 5px;
-            cursor: pointer;
-        }
-    }
-
-    .dog-nickname {
-        font-size: 16px;
-    }
-
-    .heading {
-        background: darken($primary-background-color, 15%);
-        font-weight: bold;
-    }
-}

@@ -1,12 +1,13 @@
 $(function () {
     $("#divHeader").load("header.html", function () {
-
-        $('.navigation-bar-item[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active');
-        $('.main-page-heading').click(function () {
+        var url = location.pathname.split("/")[1];
+        $('.navigation-bar-item[href^="/' + (url || "index.html") + '"]').addClass('active');
+        $('.navigation-bar-item.active').click(function () {
             $(".navigation-items").toggleClass("shown");
+            return false;
         });
 
     })
 
-    $("#divFooter").load("footer.html")
+    $("#divFooter").load("footer.html");
 });

@@ -107,7 +107,7 @@
                     $.post("announcements", this.currentAnnouncement, this.addAnnouncement);
                 },
                 setImages: function (images) {
-                    this.images = images;
+                    this.images = images || [];
                 },
                 deleteAnnouncement: function (announcement) {
                     var announcements = this.announcements;

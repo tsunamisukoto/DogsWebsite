@@ -27,7 +27,7 @@ input[type=text] {
     display: none; }
   .navigation-bar-container .expanded {
     display: none; }
-  .navigation-bar-container .navigation-bar-item, .navigation-bar-container .main-page-heading {
+  .navigation-bar-container .navigation-bar-item {
     min-width: 75px;
     vertical-align: bottom;
     display: inline-block;
@@ -35,10 +35,25 @@ input[type=text] {
     color: white !important;
     text-decoration: none !important;
     cursor: pointer; }
-    .navigation-bar-container .navigation-bar-item:hover, .navigation-bar-container .navigation-bar-item.active, .navigation-bar-container .main-page-heading:hover, .navigation-bar-container .main-page-heading.active {
+    .navigation-bar-container .navigation-bar-item:hover, .navigation-bar-container .navigation-bar-item.active {
       background: #ccdaff;
-      color: #000d2d !important; }
-    .navigation-bar-container .navigation-bar-item .mobile-heading, .navigation-bar-container .main-page-heading .mobile-heading {
+      color: #000d2d !important;
+      display: inline-block !important; }
+    .navigation-bar-container .navigation-bar-item .expander {
+      display: none !important; }
+    @media (max-width: 768px) {
+      .navigation-bar-container .navigation-bar-item.active .expander {
+        display: inline-block !important;
+        float: right;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        font-size: 20px; } }
+    .navigation-bar-container .navigation-bar-item.active .expander:hover, .navigation-bar-container .navigation-bar-item.active .expander.active {
+      background: #001447;
+      color: #b2c8ff !important;
+      display: inline-block !important; }
+    .navigation-bar-container .navigation-bar-item .mobile-heading {
       display: none !important; }
   @media (max-width: 768px) {
     .navigation-bar-container .navigation-items .collapsed {
@@ -92,10 +107,13 @@ input[type=text] {
   width: 100%;
   display: inline-block;
   max-width: 100%;
-  overflow-x: hidden;
-  white-space: nowrap; }
+  white-space: nowrap;
+  position: relative;
+  padding: 0 10px;
+  background: #000d2d;
+  box-shadow: 0px 4px 0px 0px rgba(0, 13, 45, 0.3); }
   .dog-images > div {
-    position: relative; }
+    overflow: hidden; }
     .dog-images > div > div {
       display: inline-block; }
       .dog-images > div > div.scrollable-parent {
@@ -107,24 +125,25 @@ input[type=text] {
         max-width: 100%;
         min-width: 200px;
         margin-right: 10px; }
-      .dog-images > div > div.nav {
-        position: absolute;
-        top: 80px;
-        padding: 20px;
-        z-index: 1;
-        background: #000d2d;
-        color: #b2c8ff;
-        font-size: 20px;
-        cursor: pointer; }
-        .dog-images > div > div.nav:hover, .dog-images > div > div.nav.active {
-          background: #b2c8ff;
-          border: 1px solid #000d2d;
-          color: #000d2d !important;
-          font-size: 20px; }
-        .dog-images > div > div.nav.nav-left {
-          left: 0px; }
-        .dog-images > div > div.nav.nav-right {
-          right: 0px; }
+    .dog-images > div.nav {
+      position: absolute;
+      top: 65px;
+      padding: 20px;
+      z-index: 1;
+      background: #000d2d;
+      color: #b2c8ff;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0.8; }
+      .dog-images > div.nav:hover, .dog-images > div.nav.active {
+        background: #b2c8ff;
+        border: 1px solid #000d2d;
+        color: #000d2d !important;
+        font-size: 20px; }
+      .dog-images > div.nav.nav-left {
+        left: -10px; }
+      .dog-images > div.nav.nav-right {
+        right: -10px; }
 
 .dog-info-one {
   background: white; }
