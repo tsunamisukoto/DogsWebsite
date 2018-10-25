@@ -18,9 +18,6 @@ Vue.component('dog-component', {
         <div class="layout-table" v-show="!deleted" v-if="!editing">\
             <div class="dog-name">\
                 <span v-if="dog.Name" v-html="dog.Name" ></span>\
-                <a @click="deleteDog(dog)" v-if="authenticated" class="command">\
-                    Delete\
-                </a>\
                 <a @click="editDog(dog)"  v-if="authenticated" class="command">\
                     Edit\
                 </a>\

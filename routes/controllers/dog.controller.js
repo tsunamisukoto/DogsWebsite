@@ -52,7 +52,7 @@
         findAll: (req, res) => {
             var db = database.getDB();
              
-            db.all("SELECT rowid, Name, Nickname, Grading, Sire, Dame, Achievements FROM Dogs WHERE Category = ?", [req.params.category], (err, rows) => {
+            db.all("SELECT rowid, Name, Nickname, Grading, Sire, Dame, Achievements FROM Dogs WHERE Category = ? ORDER BY rowid DESC", [req.params.category], (err, rows) => {
                 db.close();
                 if (err)
                     throw err;
